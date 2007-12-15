@@ -1,0 +1,14 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=2101
+
+*textobj-datetime* is a Vim plugin to provide text objects for date and time.
+
+
+Requirements:
+- Vim 7.0 or later
+- |textobj-user| 0.3.3 or later (vimscript#2100)
+
+Latest version:
+http://github.com/kana/vim-textobj-datetime
+
+Document in HTML format:
+http://kana.github.com/config/vim/textobj-datetime.html

@@ -1,9 +1,17 @@
 *textobj-datetime.txt*	Text objects for date and time.
 
-Version 0.1
-Copyright (C) 2007 kana <http://nicht.s8.xrea.com/>
+Version 0.3.1
+Copyright (C) 2007-2008 kana <http://whileimautomaton.net/>
 License: MIT license (see <http://www.opensource.org/licenses/mit-license>)
-$Id: /local/svn-repos/config/trunk/vim/dot.vim/doc/textobj-datetime.txt 816 2007-11-17T09:25:24.483402Z kana  $
+
+
+CONTENTS					*textobj-datetime-contents*
+
+Introduction			|textobj-datetime-introduction|
+Key Mapings			|textobj-datetime-key-mappings|
+Customizing			|textobj-datetime-customizing|
+Bugs				|textobj-datetime-bugs|
+ChangeLog			|textobj-datetime-changelog|
 
 
 
@@ -14,53 +22,67 @@ INTRODUCTION					*textobj-datetime-introduction*
 textobj-datetime is a Vim plugin to provide text objects for date and time.
 
 Requirements:
-* |textobj-user|
+* Vim 7.0 or later.
+* |textobj-user| 0.3.3 or later
+  <http://www.vim.org/scripts/script.php?script_id=2100>
 
 
 
 
 ==============================================================================
-KEY MAPPINGS					*textobj-datetime-keymappings*
+KEY MAPPINGS					*textobj-datetime-key-mappings*
 
-<Plug>textobj#datetime#full			*<Plug>textobj#datetime#full*
-	Select date plus time.
+<Plug>(textobj-datetime-auto)			*<Plug>(textobj-datetime-auto)*
+	Select one of the following objects (as long as possible).
 
-<Plug>textobj#datetime#date			*<Plug>textobj#datetime#date*
+<Plug>(textobj-datetime-full)			*<Plug>(textobj-datetime-full)*
+	Select a date and time.
+
+<Plug>(textobj-datetime-date)			*<Plug>(textobj-datetime-date)*
 	Select a date (YYYY or YYYY-MM or YYYY-MM-DD).
 
-<Plug>textobj#datetime#time			*<Plug>textobj#datetime#time*
-	Select time (hh:mm or hh:mm:ss).
+<Plug>(textobj-datetime-time)			*<Plug>(textobj-datetime-time)*
+	Select a time (hh:mm or hh:mm:ss).
 
-<Plug>textobj#datetime#tz			*<Plug>textobj#datetime#tz*
+<Plug>(textobj-datetime-tz)			*<Plug>(textobj-datetime-tz)*
 	Select a time zone designator (Z or +hh:mm or -hh:mm).
-	It must be preceding a time.
-
-<Plug>textobj#datetime#auto			*<Plug>textobj#datetime#auto*
-	Select one of the above (as long as possible).
-
-					*textobj#datetime#default_mappings()*
-textobj-datetime provides textobj#datetime#default_mappings() to define some
-useful key mappings.  Call it from your |vimrc|.
-
-	{lhs}	{rhs}			~
-	-----	------------------------~
-	ada	<Plug>textobj#datetime#auto
-	add	<Plug>textobj#datetime#date
-	adf	<Plug>textobj#datetime#full
-	adt	<Plug>textobj#datetime#time
-	adz	<Plug>textobj#datetime#tz
-
-	ida	<Plug>textobj#datetime#auto
-	idd	<Plug>textobj#datetime#date
-	idf	<Plug>textobj#datetime#full
-	idt	<Plug>textobj#datetime#time
-	idz	<Plug>textobj#datetime#tz
+	It must be preceded by a time.
 
 
 
 
 ==============================================================================
-BUGS							*textobj-datetime-bugs*
+CUSTOMIZING					*textobj-datetime-customizing*
+
+				  *g:textobj_datetime_no_default_key_mappings*
+					  *:TextobjDatetimeDefaultKeyMappings*
+This plugin will define the following key mappings in Visual mode and
+Operator-pending mode automatically.  If you don't want these key mappings,
+define |g:textobj_datetime_no_default_key_mappings| before this plugin is
+loaded (e.g. in $MYVIMRC).  You can also use
+|:TextobjDatetimeDefaultKeyMappings| to redefine these key mappings.
+
+	{lhs}	{rhs}				~
+	-----	---------------------------	~
+	ada	<Plug>(textobj-datetime-auto)
+	add	<Plug>(textobj-datetime-date)
+	adf	<Plug>(textobj-datetime-full)
+	adt	<Plug>(textobj-datetime-time)
+	adz	<Plug>(textobj-datetime-tz)
+
+	ida	<Plug>(textobj-datetime-auto)
+	idd	<Plug>(textobj-datetime-date)
+	idf	<Plug>(textobj-datetime-full)
+	idt	<Plug>(textobj-datetime-time)
+	idz	<Plug>(textobj-datetime-tz)
+
+Note that there is no difference between a{x} and i{x}.
+
+
+
+
+==============================================================================
+BUGS						*textobj-datetime-bugs*
 
 Currently, W3C-DTF is only supported.
 
@@ -71,6 +93,20 @@ Currently, W3C-DTF is only supported.
 
 ==============================================================================
 CHANGELOG					*textobj-datetime-changelog*
+
+0.3.1	2008-06-11T22:07:26+09:00
+	- Modify to use textobj-user version 0.3.3 or later.
+
+0.3	2008-06-08T21:41:15+09:00
+	- Modify to use textobj-user version 0.3 or later.
+	  - Rename interface mappings.  For example:
+	    Old name: <Plug>textobj#datetime#full
+	    New name: <Plug>(textobj-datetime-full)
+
+0.2	2008-01-08T23:03:05+09:00
+	- Fix the incorrect design - modify not to be autoloaded.
+	- Modify the policy for the defauly key mappings.
+	  See |g:textobj_datetime_no_default_key_mappings|.
 
 0.1	2007-11-17
 	- Requires |textobj-user|.
